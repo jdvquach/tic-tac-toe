@@ -6,11 +6,27 @@
 let player1Name = "" , player2Name = "", currentPlayer = "";
 let gameBoard = [0,0,0,0,0,0,0,0,0];
 let winnerFound = 0, moveCount=0;
+let score1 = 0, score2 = 0;    //Multi
 
 //Function to broadcast message
 let boardMsg = function (x){
 	return $("#board").text(x);
 }
+
+//Below added for scoredboard
+
+let scoreMsg = function (x){
+	return $(".score1").text(x);
+}
+
+let scoreMsg2 = function (x){
+	return $(".score2").text(x);
+}
+
+scoreMsg(`Player 1:  ${score1}`);
+scoreMsg2(`Player 2: ${score2}`);
+
+//Scoardboard end
 
 //Function to randomly choose player 1 or player 2
 const setTurn = function () {
@@ -33,7 +49,25 @@ const init = function () {
 		winnerFound = 0;
 		moveCount = 0;
 		$('.col').empty();
+		// Added below for Multi
+		scoreMsg(`Player 1:  ${score1}`);
+		scoreMsg2(`Player 2: ${score2}`);
+		//end multi
 }
+
+//Added below for Multi
+
+$("#resetButton").click(function () {
+
+	$('.col').empty();
+	score1 = 0;
+	score2 = 0;
+
+	scoreMsg(`Player 1:  ${score1}`);
+	scoreMsg2(`Player 2: ${score2}`);
+
+});
+// multi end
 
 $("#playButton").click(function () {
 
@@ -46,7 +80,10 @@ $("#playButton").click(function () {
 
 	if (player1Name == "" || player2Name == ""){
 
+
 		boardMsg("Please set Player 1 and 2 names and press 'Play!'.");
+		init();   // User may just click without a name and the box is taken. Need to reset.
+
 		return;
 	}
 	setTurn();
@@ -72,12 +109,13 @@ $(".col").click(function (){
 	if (player1Name == "" || player2Name == "") {
 
 		boardMsg("Please set Player 1 and 2 names and press 'Play!'.");
+		init();
 
 		return;
 	}
 
 	if ( winnerFound == 1 ) {
-		boardMsg("Please click play again");
+		boardMsg("Please click 'Play' to again");
 		return;
 	}
 
@@ -146,11 +184,20 @@ const winnerCheck = function ( playerName ) {
 		 g[2] === playerName && g[4] === playerName && g[6] === playerName
 
 		 ) {
-		boardMsg(playerName+" won the game!");
+		boardMsg(playerName+" won the game! Press 'Play' to play again");
 		winnerFound = 1;
 		moveCount = 0;
-		$("#playButton").text("Play again");
-
+		//$("#playButton").text("Play again");
+		// Below code for multi player.
+			if (playerName === player1Name) {
+				score1++;
+				scoreMsg(`Player 1:  ${score1}`);
+			}
+				else {
+					score2++
+					scoreMsg2(`Player 2: ${score2}`);
+				}
+		// End
 		return true;
 	}
 	return false;

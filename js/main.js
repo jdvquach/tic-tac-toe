@@ -1,6 +1,6 @@
 // WDI29 - Tic Tac Toe
 //
-//
+//Descriptipon - Simple Tic Tac Toe game.
 
 //Set global variables
 let player1Name = "" , player2Name = "", currentPlayer = "";
@@ -45,7 +45,8 @@ $("#playButton").click(function () {
 	player2Name = $("#player2").val();
 
 	if (player1Name == "" || player2Name == ""){
-		alert( "Please set Player 1 and 2 names and press 'Play'." );
+
+		boardMsg("Please set Player 1 and 2 names and press 'Play!'.");
 		return;
 	}
 	setTurn();
@@ -58,7 +59,9 @@ $(".col").click(function (){
 	console.log(id);
 
 	if (gameBoard[id]!== 0) {
-		alert("This position is taken. Please try other position.");
+
+		boardMsg( "This box is taken. Try another" );
+
 		return;
 	}
 
@@ -67,12 +70,14 @@ $(".col").click(function (){
 	console.log(gameBoard[id]);
 
 	if (player1Name == "" || player2Name == "") {
-		alert("Please set Player 1 and 2 names and press 'Play'.");
+
+		boardMsg("Please set Player 1 and 2 names and press 'Play!'.");
+
 		return;
 	}
 
 	if ( winnerFound == 1 ) {
-		alert( "Please click play again" );
+		boardMsg("Please click play again");
 		return;
 	}
 
@@ -85,9 +90,7 @@ $(".col").click(function (){
 			if ( moveCount >= 9 ) {
 				boardMsg("Match Drawn!");
 				moveCount = 0;
-
-				// $("#playButton").text("Play again");
-
+				//$("#playButton").text("Play again");
 				winnerFound = 1;
 				return;
 			} else
@@ -128,7 +131,7 @@ $(".col").click(function (){
 });
 
 const winnerCheck = function ( playerName ) {
-	console.log(`WinnerCheck ${playerName} ${gameBoard[0]} ${gameBoard[1]} ${gameBoard[2]}`);
+
 	const g = gameBoard;
 	if (
 		 g[0] === playerName && g[1] === playerName && g[2] === playerName ||
@@ -146,8 +149,6 @@ const winnerCheck = function ( playerName ) {
 		boardMsg(playerName+" won the game!");
 		winnerFound = 1;
 		moveCount = 0;
-		// debugger
-		console.log('GOT HERE');
 		$("#playButton").text("Play again");
 
 		return true;

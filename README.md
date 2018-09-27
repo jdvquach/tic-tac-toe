@@ -26,7 +26,7 @@ This is a Tic Tac Toe game for two players.
 
 https://jdvquach.github.io/tic-tac-toe/index.html
 
-## Technology Stack
+## Technology Stack:
 
 * JavaScript
 * CSS

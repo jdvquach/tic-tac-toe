@@ -6,14 +6,12 @@
 let player1Name = "" , player2Name = "", currentPlayer = "";
 let gameBoard = [0,0,0,0,0,0,0,0,0];
 let winnerFound = 0, moveCount=0;
-let score1 = 0, score2 = 0;    //Multi
+let score1 = 0, score2 = 0;
 
 //Function to broadcast message
 let boardMsg = function (x){
 	return $("#board").text(x);
 }
-
-//Below added for scoredboard
 
 let scoreMsg = function (x){
 	return $(".score1").text(x);
@@ -26,10 +24,8 @@ let scoreMsg2 = function (x){
 scoreMsg(`Player 1:  ${score1}`);
 scoreMsg2(`Player 2: ${score2}`);
 
-//Scoardboard end
-
-//Function to randomly choose player 1 or player 2
-const setTurn = function () {
+//Function to randomly choose player 1 or player 2 to go first
+const choosePlayer = function () {
 	let randomPlayer = Math.floor((Math.random() * 2) + 1);
 	winnerFound=0;
 	if ( randomPlayer == 1 ){
@@ -49,13 +45,11 @@ const init = function () {
 		winnerFound = 0;
 		moveCount = 0;
 		$('.col').empty();
-		// Added below for Multi
 		scoreMsg(`Player 1:  ${score1}`);
 		scoreMsg2(`Player 2: ${score2}`);
-		//end multi
 }
 
-//Added below for Multi
+//Reset the game
 
 $("#resetButton").click(function () {
 
@@ -67,7 +61,6 @@ $("#resetButton").click(function () {
 	scoreMsg2(`Player 2: ${score2}`);
 
 });
-// multi end
 
 $("#playButton").click(function () {
 
@@ -80,31 +73,28 @@ $("#playButton").click(function () {
 
 	if (player1Name == "" || player2Name == ""){
 
-
 		boardMsg("Please set Player 1 and 2 names and press 'Play!'.");
 		init();   // User may just click without a name and the box is taken. Need to reset.
 
 		return;
 	}
-	setTurn();
+	choosePlayer();
 
 });
 
 $(".col").click(function (){
 
 	const id = parseInt( $(this).attr('id') );
-	console.log(id);
 
 	if (gameBoard[id]!== 0) {
 
-		boardMsg( "This box is taken. Try another" );
+		boardMsg( "This box is taken. Try another." );
 
 		return;
 	}
 
 // Set the chosen box to the current player
 	gameBoard[id] = currentPlayer;
-	console.log(gameBoard[id]);
 
 	if (player1Name == "" || player2Name == "") {
 
@@ -128,7 +118,6 @@ $(".col").click(function (){
 			if ( moveCount >= 9 ) {
 				boardMsg("Match Drawn!");
 				moveCount = 0;
-				//$("#playButton").text("Play again");
 				winnerFound = 1;
 				return;
 			} else
@@ -184,11 +173,11 @@ const winnerCheck = function ( playerName ) {
 		 g[2] === playerName && g[4] === playerName && g[6] === playerName
 
 		 ) {
-		boardMsg(playerName+" won the game! Press 'Play' to play again");
+		boardMsg(playerName+" won the game. Press 'Play' to play again");
 		winnerFound = 1;
 		moveCount = 0;
 		//$("#playButton").text("Play again");
-		// Below code for multi player.
+
 			if (playerName === player1Name) {
 				score1++;
 				scoreMsg(`Player 1:  ${score1}`);
@@ -197,7 +186,6 @@ const winnerCheck = function ( playerName ) {
 					score2++
 					scoreMsg2(`Player 2: ${score2}`);
 				}
-		// End
 		return true;
 	}
 	return false;

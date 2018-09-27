@@ -100,12 +100,12 @@ $(".col").click(function (){
 
 		boardMsg("Please set Player 1 and 2 names and press 'Play!'.");
 		init();
-
 		return;
 	}
 
 	if ( winnerFound == 1 ) {
-		boardMsg("Please click 'Play' to again");
+
+		boardMsg("Please click 'Play' to play again");
 		return;
 	}
 
@@ -152,9 +152,7 @@ $(".col").click(function (){
 		else {
 			return;
 		}
-
 	}
-
 });
 
 const winnerCheck = function ( playerName ) {

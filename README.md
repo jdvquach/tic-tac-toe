@@ -20,7 +20,7 @@ This is a Tic Tac Toe game for two players.
 ## Features:
 
 * Multiple game rounds with a win counter
-* Inventive styling ie hover, box shadows
+* Creative styling ie hover, box shadows
 
 ## Play the game:
 
@@ -33,7 +33,6 @@ https://jdvquach.github.io/tic-tac-toe/index.html
 * HTML
 * JQuery
 
-## Note/Isues:
+## Note/Issues:
 
-Please enter name for Player 1 and Player 2  and then click 'Play' to play the game.
-
+* Please enter name for Player 1 and Player 2  and then click 'Play' to play the game.

@@ -28,7 +28,7 @@ scoreMsg2(`Player 2: ${score2}`);
 const choosePlayer = function () {
 	let randomPlayer = Math.floor((Math.random() * 2) + 1);
 	winnerFound=0;
-	if ( randomPlayer == 1 ){
+	if ( randomPlayer === 1 ){
 		currentPlayer = player1Name;
 		boardMsg( player1Name+"'s turn now!" );
 	}
@@ -53,35 +53,38 @@ const init = function () {
 
 $("#resetButton").click(function () {
 
-	$('.col').empty();
 	score1 = 0;
 	score2 = 0;
-
-	scoreMsg(`Player 1:  ${score1}`);
-	scoreMsg2(`Player 2: ${score2}`);
+  init();
+	boardMsg("Press 'Play' to start game.");
 
 });
 
+//Game start here
+boardMsg("Press 'Play' to start game.");
 $("#playButton").click(function () {
 
-	if ( winnerFound == 1 ) {
+	if ( winnerFound === 1 ) {
 		init();
 	}
 
 	player1Name = $("#player1").val();
 	player2Name = $("#player2").val();
 
-	if (player1Name == "" || player2Name == ""){
+	if (player1Name === "" || player2Name === ""){
 
-		boardMsg("Please set Player 1 and 2 names and press 'Play!'.");
-		init();   // User may just click without a name and the box is taken. Need to reset.
+		boardMsg("Please set Player 1 and 2 names and press 'Play'");
+		init();
 
 		return;
 	}
+
+	//Radomly choose player 1 or 2
 	choosePlayer();
 
 });
 
+//A box is clicked
 $(".col").click(function (){
 
 	const id = parseInt( $(this).attr('id') );
@@ -94,29 +97,17 @@ $(".col").click(function (){
 	}
 
 // Set the chosen box to the current player
+
 	gameBoard[id] = currentPlayer;
 
-	if (player1Name == "" || player2Name == "") {
-
-		boardMsg("Please set Player 1 and 2 names and press 'Play!'.");
-		init();
-		return;
-	}
-
-	if ( winnerFound == 1 ) {
-
-		boardMsg("Please click 'Play' to play again");
-		return;
-	}
-
-	if ( currentPlayer == player1Name ) {
+	if ( currentPlayer === player1Name ) {
 		moveCount++;
 		$(this).text("O");
 
 		let ifWon = winnerCheck( player1Name );
 		if ( !ifWon ) {
 			if ( moveCount >= 9 ) {
-				boardMsg("Match Drawn!");
+				boardMsg("Match Drawn! Press 'Play' to play again");
 				moveCount = 0;
 				winnerFound = 1;
 				return;
@@ -132,15 +123,14 @@ $(".col").click(function (){
 		}
 
 	}
-	else if ( currentPlayer == player2Name ) {
+	else if ( currentPlayer === player2Name ) {
 		moveCount++;
 		$(this).text("X");
 		let ifWon = winnerCheck(player2Name);
 		if ( !ifWon ) {
 			if( moveCount >= 9 ){
-				boardMsg("Match Drawn!");
+				boardMsg("Match Drawn! Press 'Play' to play again");
 				moveCount=0;
-				// $("#playButton").text("Play again");
 				winnerFound=1;
 				return;
 			} else {
@@ -175,7 +165,7 @@ const winnerCheck = function ( playerName ) {
 		winnerFound = 1;
 		moveCount = 0;
 		//$("#playButton").text("Play again");
-
+    // Add game won to count
 			if (playerName === player1Name) {
 				score1++;
 				scoreMsg(`Player 1:  ${score1}`);

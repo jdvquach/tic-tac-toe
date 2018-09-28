@@ -145,7 +145,7 @@ $(".col").click(function (){
 	}
 });
 
-//FOr each turn, check if it's a winning move
+//For each turn, check if it's a winning move
 
 const winnerCheck = function ( playerName ) {
 
@@ -166,8 +166,7 @@ const winnerCheck = function ( playerName ) {
 		boardMsg(playerName+" won the game. Press 'Play' to play again");
 		winnerFound = 1;
 		moveCount = 0;
-		//$("#playButton").text("Play again");
-    // Add game won to count
+    // Add game won to count for player 1 or 2
 			if (playerName === player1Name) {
 				score1++;
 				scoreMsg(`Player 1:  ${score1}`);

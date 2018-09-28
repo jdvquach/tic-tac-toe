@@ -1,6 +1,7 @@
 # Tic Tac Toe
 
-This is a Tic Tac Toe game for two players.
+This is a Tic Tac Toe game for two players.  The objective of the game is to get
+three matching 'Xs' or 'Os' vertically, horizontally or diagonally.
 
 ## Screenshot:
 
@@ -8,19 +9,20 @@ This is a Tic Tac Toe game for two players.
 
 ## Technical Requirements:
 
-* Render a game board in the browser
-* Switch turns between X and O (or whichever markers you select); your game should prevent users from playing a turn into a square that is already occupied
-* Visually display which side won if a player gets three in a row or show a draw/"cat’s game" if neither wins
-* Include separate HTML / CSS / JavaScript files
-* Stick with KISS (Keep It Simple Stupid) and DRY (Don't Repeat Yourself) principles
-* Use Javascript with jQuery for DOM manipulation
-* Deploy your game online, where the rest of the world can access it
-* Use semantic markup for HTML and CSS (adhere to best practices)
+* Render a game board in the browser.
+* Switch turns between X and O (or whichever markers you select); your game should prevent users from playing a turn into a square that is already occupied.
+* Visually display which side won if a player gets three in a row or show a draw/"cat’s game" if neither wins.
+* Include separate HTML / CSS / JavaScript files.
+* Stick with KISS (Keep It Simple Stupid) and DRY (Don't Repeat Yourself) principles.
+* Use Javascript with jQuery for DOM manipulation.
+* Deploy your game online, where the rest of the world can access it.
+* Use semantic markup for HTML and CSS (adhere to best practices).
 
 ## Features:
 
-* Multiple game rounds with a win counter
-* Creative styling ie hover, box shadows
+* Multiple game rounds with a win counter.
+* Creative styling ie hover, box shadows.
+* Reset anytime.
 
 ## Play the game:
 

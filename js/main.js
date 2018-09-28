@@ -145,6 +145,8 @@ $(".col").click(function (){
 	}
 });
 
+//FOr each turn, check if it's a winning move
+
 const winnerCheck = function ( playerName ) {
 
 	const g = gameBoard;
